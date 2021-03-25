@@ -1,0 +1,165 @@
+section {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  width: 80%;
+  min-width: 600px;
+  position: absolute;
+  top: 45vh;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%);
+}
+
+#project-logo {
+  width: 56px;
+  height: 56px;
+  top: -28px;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%);
+  position: absolute;
+}
+
+.project-intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.card {
+  background-color: white;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  padding: 50px;
+}
+
+.card ul {
+  display: flex;
+  text-align: left;
+  padding: 0 0 0 0;
+  margin-bottom: 50px;
+}
+
+.card ul li {
+  font-weight: 700;
+  font-size: 30px;
+}
+
+p {
+  font-weight: normal;
+  font-size: medium;
+}
+
+#count-separation {
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  padding: 0px 80px 0px 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.progressBar {
+  background-color: lightgrey;
+  width: 100%;
+  height: 15px;
+  border-radius: 30px;
+}
+
+.progress {
+  width: 89%;
+  height: 100%;
+  background-color: #49a8a8;
+  border-radius: 30px;
+}
+
+.about {
+  text-align: left;
+  margin-bottom: 50px;
+  font-weight: 500;
+}
+
+.btn-global {
+  padding: 0 40px 0 40px;
+  height: 55px;
+  background-color: #49a8a8;
+  border: none;
+  color: white;
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+#bookmark {
+  position: relative;
+  height: 55px;
+  padding: 0;
+  background-color: rgb(238, 237, 237);
+  border-radius: 30px;
+  width: 200px;
+  border: none;
+  line-height: 20px;
+  font-weight: 700;
+  outline: none;
+}
+
+#bookmark-icon {
+  /*   position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: translate(-0%, -50%); */
+  float: left;
+  height: 55px;
+  width: 55px;
+  transition: 0.7s;
+  z-index: 3;
+  fill: green;
+}
+
+#bookmark-text {
+  margin: 10px 30px 10px 10px;
+  font-weight: bold;
+  position: absolute;
+  z-index: 1;
+  transition: 0.2s;
+}
+
+.box-btn {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px 0px 0px;
+}
+
+.stand {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  padding: 30px;
+}
+
+.pledge-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+.pledge {
+  color: #49a8a8;
+  font-weight: 500;
+}
+
+.left-number {
+  float: left;
+  font-weight: 700;
+  font-size: 30px;
+  margin-right: 5px;
+}

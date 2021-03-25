@@ -1,0 +1,25 @@
+<p>project works</p>
+
+{{ title }}
+<input type="text" class="form-control" [(ngModel)]="projectFilter" />
+
+<!-- <input
+  type="text"
+  class="form-control"
+  [ngModel]="projectFilter"
+  (ngModelChange)="projectFilter = $event"
+/>
+ -->
+<div class="container" *ngFor="let project of filteredProjects">
+  <div class="card">
+    <img
+      src="{{ project.image }}"
+      alt=""
+      class="img-card"
+      routerLink="['/project'project.id]"
+    />
+    <h3 class="card-title">{{ project.name }}</h3>
+    <p class="card-intro">{{ project.rewards }}</p>
+  </div>
+</div>
+]

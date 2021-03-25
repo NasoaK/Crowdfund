@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  width: 400px;
+  height: 400px;
+}
+
+.img-card {
+  width: 100%;
+  height: 50%;
+  background-color: red;
+}
+
+.card-title {
+  background-color: blue;
+  height: 25%;
+}
+
+.card-intro {
+  height: 25%;
+  background-color: green;
+}
