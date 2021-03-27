@@ -11,6 +11,12 @@ section {
   transform: translate(-50%);
 }
 
+.project-header {
+  object-fit: cover;
+  width: 100vw;
+  height: 55vh;
+}
+
 #project-logo {
   width: 56px;
   height: 56px;
@@ -122,7 +128,7 @@ p {
 }
 
 #bookmark-text {
-  margin: 10px 30px 10px 10px;
+  margin: 15px 10px 10px 70px;
   font-weight: bold;
   position: absolute;
   z-index: 1;
@@ -162,4 +168,16 @@ h3 {
   font-weight: 700;
   font-size: 30px;
   margin-right: 5px;
+}
+
+.modal {
+  position: absolute;
+}
+.modal-box {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+  border-radius: 12px;
+  padding: 50px;
 }

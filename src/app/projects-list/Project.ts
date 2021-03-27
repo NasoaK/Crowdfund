@@ -1,7 +1,7 @@
 import { IRewards } from "./Rewards";
 
 export interface IProject {
-  id: 1;
+  id: number;
   name: string;
   introduction: string;
   image: string;
