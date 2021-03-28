@@ -10,6 +10,11 @@ import { ProjectListService } from "../services/project-list.service";
 })
 export class ProjectDetailsComponent implements OnInit {
   public project: IProject = <IProject>{};
+  public reward: any = document.querySelector(".modal-rewards-bottom");
+
+  /*   public selectReward(): any {
+    this.reward.style.display = "flex";
+  } */
 
   constructor(
     private route: ActivatedRoute,
@@ -17,9 +22,10 @@ export class ProjectDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    /*     this.selectReward(); */
     const id: number = +this.route.snapshot.paramMap.get("id");
-
     console.log(id);
+    console.log(this.reward);
     this.projectlistservice.getProjects().subscribe((projects: IProject[]) => {
       this.project = projects.find((project) => project.id === id);
     });
