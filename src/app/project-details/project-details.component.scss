@@ -78,7 +78,7 @@ p {
 }
 
 .progress {
-  width: 89%;
+  max-width: 100%;
   height: 100%;
   background-color: #49a8a8;
   border-radius: 30px;
@@ -92,17 +92,19 @@ p {
 
 .btn-global {
   padding: 0 40px 0 40px;
-  height: 55px;
+  height: 56px;
   background-color: #49a8a8;
   border: none;
   color: white;
   border-radius: 30px;
   font-weight: 700;
 }
-
+:hover.btn-global{
+  background-color: darkcyan;
+}
 #bookmark {
   position: relative;
-  height: 55px;
+  height: 56px;
   padding: 0;
   background-color: rgb(238, 237, 237);
   border-radius: 30px;
@@ -114,21 +116,29 @@ p {
 }
 
 #bookmark-icon {
-  /*   position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    transform: translate(-0%, -50%); */
+
   float: left;
-  height: 55px;
-  width: 55px;
+  height: 56px;
+  width: 56px;
   transition: 0.7s;
   z-index: 3;
   fill: green;
+  align-items: center;
+}
+.rotate{
+  transform: rotate(360deg);
 }
 
 #bookmark-text {
-  margin: 15px 10px 10px 70px;
+  margin: 12px 10px 10px 84px;
+  font-weight: bold;
+  position: absolute;
+  z-index: 1;
+  transition: 0.2s;
+}
+.bookmarked-text{
+  color: #49a8a8;
+  margin: 12px 10px 10px 34px;
   font-weight: bold;
   position: absolute;
   z-index: 1;
@@ -185,7 +195,6 @@ h3 {
   overflow: auto;
   position: fixed;
   width: 100vw;
-  display: none;
 }
 .modal-box {
   z-index: 10;
@@ -240,7 +249,7 @@ h3 {
 
 .input-btn {
   border: 1px solid lightgrey;
-  height: 55px;
+  height: 56px;
   display: flex;
   padding: 10px;
   border-radius: 25px;

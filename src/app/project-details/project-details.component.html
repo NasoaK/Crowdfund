@@ -10,13 +10,28 @@
     </div>
 
     <div class="box-btn">
-      <button class="btn-global">Back this project</button>
-      <button id="bookmark">
-        <img src="assets/images/icon-bookmark.svg" alt="" id="bookmark-icon" />
-        <p id="bookmark-text">bookmark</p>
+      <button class="btn-global" (click)="toggleModal()">Back this project</button>
+      <button id="bookmark" (click)="toggleBookmark()">
+
+
+      <span style=" width: fit-content; height: fit-content" id="bookmark-icon" [ngStyle]="{'margin-left': bookmarked ? '145px' : '0px'}" [ngClass]="{'rotate': bookmarked}">
+        <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg" >
+          <g fill="none" fill-rule="evenodd">
+            <circle fill="#2F2F2F" cx="28" cy="28" r="28" [ngStyle]="{'fill' : bookmarked ? '#49a8a8' : 'black'}"/>
+            <path fill="#B1B1B1" d="M23 19v18l5-5.058L33 37V19z" [ngStyle]="{'fill' : bookmarked ? 'white' : 'grey'}"/>
+          </g>
+        </svg>
+        </span>
+<!-- 
+
+        <img src="assets/images/icon-bookmark.svg" alt="" id="bookmark-icon" [ngStyle]="{'margin-left': bookmarked ? '145px' : '0px'}" [ngClass]="{'rotate': bookmarked}"/> -->
+        <p id="bookmark-text" [ngClass]="{'bookmarked-text': bookmarked} " [ngStyle]="{'margin-left': bookmarked ? '34px' : '84px'}" >{{bookmarkText()}}</p>
       </button>
     </div>
   </div>
+
+
+  
 
   <div class="card">
     <ul>
@@ -35,7 +50,7 @@
     </ul>
 
     <div class="progressBar">
-      <div class="progress"></div>
+      <div class="progress" [ngStyle]="{'width': (project.total_earned / project.goal)*100 +'%'}" ></div>
     </div>
   </div>
 
@@ -60,7 +75,7 @@
           <p class="stand-left">
             <span class="left-number"> {{ reward.quantity }}</span> left
           </p>
-          <button class="btn-global">Select Reward</button>
+          <button class="btn-global" (click)="toggleModal()">Select Reward</button>
         </div>
       </div>
     </div>
@@ -70,8 +85,10 @@
 <!-- Selection modal start -->
 <!-- Turn into compnent V2 -->
 
-<div class="modal">
+<div class="modal" *ngIf="showModal">
+  {{showModal ? 'cacher' : 'bonjour'}}
   <div class="modal-box">
+    <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" (click)="toggleModal()"><path d="M11.314 0l2.828 2.828L9.9 7.071l4.243 4.243-2.828 2.828L7.07 9.9l-4.243 4.243L0 11.314 4.242 7.07 0 2.828 2.828 0l4.243 4.242L11.314 0z" fill="#000" fill-rule="evenodd" opacity=".4"/></svg >
     <h3>Back this project</h3>
 
     <p id="modal-text">
@@ -81,7 +98,7 @@
 
     <div class="modal-rewards">
       <input type="radio" name="" id="" class="modal-rewards-checkbox" />
-      <h3>PLedge with no rewards</h3>
+      <h3>Pledge with no rewards</h3>
       <p>
         Choose to support us without a rewards if you simply believe in our
         project . As a backer, you will be signed up to receive product updates
@@ -90,8 +107,8 @@
     </div>
 
     <div class="modal-rewards-box" *ngFor="let reward of project.rewards">
-      <div class="modal-rewards">
-        <input type="radio" name="" id="" class="modal-rewards-checkbox" />
+      <div class="modal-rewards" >
+        <input type="radio" name="" id="" class="modal-rewards-checkbox" (click)="selectRewards()" />
 
         <div class="modal-pledge-box">
           <h3 style="margin-right: 20px">{{ reward.name }}</h3>
@@ -101,13 +118,13 @@
         <p>{{ reward.description }}</p>
 
         <div class="box-btn">
-          <p class="modal-rewards-left" onclick="selectReward()">
+          <p class="modal-rewards-left">
             <strong style="font-size: larger; margin-right: 5px">
               {{ reward.quantity }}</strong
             >
             left
           </p>
-          <div class="modal-rewards-bottom">
+          <div class="modal-rewards-bottom" *ngIf="selectReward">
             <p>Enter your pledge</p>
             <div>
               <div class="input-btn">

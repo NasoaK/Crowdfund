@@ -56,6 +56,10 @@ export class ProjectsListComponent implements OnInit {
 
   public showBadge!: boolean;
 
+  public rewardSelected!: boolean;
+
+  public showModal!:boolean;
+
   public filteredProjects: IProject[] = [];
 
   private _projectFilter = "";
@@ -92,9 +96,14 @@ export class ProjectsListComponent implements OnInit {
     this.showBadge = !this.showBadge;
   }
 
+
   public receiveRatingClicked(message: string): void {
     this.receivedRating = message;
   }
+
+public toggleSelected():void{
+  this.rewardSelected = !this.rewardSelected;
+}
 
   @Output()
   rating: number = 2;
