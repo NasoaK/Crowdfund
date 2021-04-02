@@ -78,7 +78,7 @@ p {
 }
 
 .progress {
-  max-width: 100%;
+  
   height: 100%;
   background-color: #49a8a8;
   border-radius: 30px;
@@ -240,10 +240,9 @@ h3 {
   justify-content: space-between;
   padding-top: 20px;
   align-items: center;
-  display: none;
 }
 
-.modal-rewards-bottom > div {
+form{
   display: flex;
 }
 
@@ -254,11 +253,5 @@ h3 {
   padding: 10px;
   border-radius: 25px;
   margin-right: 20px;
-}
-
-.input-btn > input {
-  border: none;
-  width: fit-content;
-  outline: none;
-  margin-left: 10px;
+  width: 150px;
 }

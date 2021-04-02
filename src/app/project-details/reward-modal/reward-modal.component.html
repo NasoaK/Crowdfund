@@ -1,0 +1,59 @@
+
+<div class="modal" >
+<!--     {{showModal ? 'cacher' : 'bonjour'}} -->
+    <div class="modal-box">
+      <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" ><path d="M11.314 0l2.828 2.828L9.9 7.071l4.243 4.243-2.828 2.828L7.07 9.9l-4.243 4.243L0 11.314 4.242 7.07 0 2.828 2.828 0l4.243 4.242L11.314 0z" fill="#000" fill-rule="evenodd" opacity=".4"/></svg >
+      <h3>Back this project</h3>
+  
+      <p id="modal-text">
+        Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the
+        world?
+      </p>
+  
+      <div class="modal-rewards">
+        <input type="radio" name="" id="" class="modal-rewards-checkbox" />
+        <h3>Pledge with no rewards</h3>
+        <p>
+          {{reward.description }}
+          Choose to support us without a rewards if you simply believe in our
+          project . As a backer, you will be signed up to receive product updates
+          via email
+        </p>
+      </div>
+  
+      <div class="modal-rewards-box" >
+  
+    
+        <div class="modal-rewards" >
+          <input type="radio" name="" id="" class="modal-rewards-checkbox"  />
+  
+          <div class="modal-pledge-box">
+            <h3 style="margin-right: 20px">{{ reward.nameR }}</h3>
+            <p class="pledge">Pledge $<!-- {{ reward.pledge }}  -->or more</p>
+          </div>
+  
+          <p>{{ reward.description }}</p>
+  
+          <div class="box-btn">
+            <p class="modal-rewards-left">
+              <strong style="font-size: larger; margin-right: 5px">
+              <!--   {{ reward.quantity }} --></strong
+              >
+              left
+            </p>
+            <div class="modal-rewards-bottom" >
+              <p>Enter your pledge</p>
+              <div>
+                <div class="input-btn">
+                  <p>$</p>
+                  <input type="text" />
+                </div>
+                <button class="btn-global">Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

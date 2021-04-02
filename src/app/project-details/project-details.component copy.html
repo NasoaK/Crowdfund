@@ -36,8 +36,8 @@
   <div class="card">
     <ul>
       <li>
-        {{ project.total_earned  + totalPayment | currency }} 
-        <p>{{ project.goal  | currency}}</p>
+        {{ project.total_earned | currency }}
+        <p>{{ project.goal }}</p>
       </li>
       <li id="count-separation">
         {{ project.total_backer }}
@@ -50,7 +50,7 @@
     </ul>
 
     <div class="progressBar">
-      <div class="progress" [ngStyle]="{'width': ((project.total_earned + totalPayment) / project.goal)*100 +'%'}" ></div>
+      <div class="progress" [ngStyle]="{'width': (project.total_earned / project.goal)*100 +'%'}" ></div>
     </div>
   </div>
 
@@ -63,7 +63,7 @@
       </p>
     </div>
 
-    <div class="rewards-box" *ngFor="let reward of project.rewards" >
+    <div class="rewards-box" *ngFor="let reward of project.rewards">
      
       <div class="stand">
         <div class="pledge-box">
@@ -76,7 +76,7 @@
           <p class="stand-left">
             <span class="left-number"> {{ reward.quantity }}</span> left
           </p>
-          <button class="btn-global" (click)="onSelect(reward)" [disabled]>Select Reward</button>
+          <button class="btn-global" (click)="toggleModal()">Select Reward</button>
         </div>
       </div>
     </div>
@@ -86,10 +86,10 @@
 <!-- Selection modal start -->
 <!-- Turn into compnent V2 -->
 
-<div class="modal" *ngIf="selectedReward">
+<div class="modal" *ngIf="showModal">
   {{showModal ? 'cacher' : 'bonjour'}}
   <div class="modal-box">
-    <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" (click)="selectedReward = null"><path d="M11.314 0l2.828 2.828L9.9 7.071l4.243 4.243-2.828 2.828L7.07 9.9l-4.243 4.243L0 11.314 4.242 7.07 0 2.828 2.828 0l4.243 4.242L11.314 0z" fill="#000" fill-rule="evenodd" opacity=".4"/></svg >
+    <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" (click)="toggleModal()"><path d="M11.314 0l2.828 2.828L9.9 7.071l4.243 4.243-2.828 2.828L7.07 9.9l-4.243 4.243L0 11.314 4.242 7.07 0 2.828 2.828 0l4.243 4.242L11.314 0z" fill="#000" fill-rule="evenodd" opacity=".4"/></svg >
     <h3>Back this project</h3>
 
     <p id="modal-text">
@@ -97,9 +97,7 @@
       world?
     </p>
 
-
-       <!--  PLEDGE 0$ -->
- <!--    <div class="modal-rewards">
+    <div class="modal-rewards">
       <input type="radio" name="" id="" class="modal-rewards-checkbox" />
       <h3>Pledge with no rewards</h3>
       <p>
@@ -107,39 +105,37 @@
         project . As a backer, you will be signed up to receive product updates
         via email
       </p>
-    </div> -->
+    </div>
 
-    <div class="modal-rewards-box" >
+    <div class="modal-rewards-box" *ngFor="let reward of project.rewards">
 
   
-      <div class="modal-rewards" (click)="togglePledge()" >
-        <input type="radio" name="" id="" class="modal-rewards-checkbox"  />
+      <div class="modal-rewards" >
+        <input type="radio" name="" id="" class="modal-rewards-checkbox" (click)="selectRewards()" />
 
         <div class="modal-pledge-box">
-          <h3 style="margin-right: 20px">{{ selectedReward.name }}</h3>
-          <p class="pledge">Pledge ${{ selectedReward.pledge }} or more</p>
+          <h3 style="margin-right: 20px">{{ reward.name }}</h3>
+          <p class="pledge">Pledge ${{ reward.pledge }} or more</p>
         </div>
 
-        <p>{{ selectedReward.description }}</p>
+        <p>{{ reward.description }}</p>
 
         <div class="box-btn">
-
           <p class="modal-rewards-left">
             <strong style="font-size: larger; margin-right: 5px">
-              {{ selectedReward.quantity }}</strong>left</p>
-
-          <div class="modal-rewards-bottom" >
-
+              {{ reward.quantity }}</strong
+            >
+            left
+          </p>
+          <div class="modal-rewards-bottom" *ngIf="selectReward">
             <p>Enter your pledge</p>
-
-          
-              <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-                <input type="number" class="input-btn" name="payment" min="{{selectedReward.pledge}}" [ngModel]="defaultPay" required>
-                <button type="submit" class="btn-global" [disabled]="f.invalid">Continue</button>
-              </form>
-             
-              
-          
+            <div>
+              <div class="input-btn">
+                <p>$</p>
+                <input type="text" />
+              </div>
+              <button class="btn-global">Continue</button>
+            </div>
           </div>
         </div>
       </div>

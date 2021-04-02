@@ -8,6 +8,7 @@ import { ProjectsListComponent } from "./projects-list/projects-list.component";
 import { ProjectDetailsComponent } from "./project-details/project-details.component";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
+import { RewardModalComponent } from './project-details/reward-modal/reward-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,8 @@ import { FormsModule } from "@angular/forms";
     HomeComponent,
     ProjectsListComponent,
     ProjectDetailsComponent,
+    RewardModalComponent,
+ 
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

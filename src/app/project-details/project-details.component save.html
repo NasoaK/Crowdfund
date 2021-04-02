@@ -1,0 +1,92 @@
+<img src="{{ project.image }}" alt="" class="project-header" />
+
+<section>
+  <div class="card">
+    <img id="project-logo" src="{{ project.logo }}" alt="" />
+
+    <div class="project-intro">
+      <h1>{{ project.name }}</h1>
+      <p>{{ project.introduction }}</p>
+    </div>
+
+    <div class="box-btn">
+      <button class="btn-global" (click)="toggleModal()">Back this project</button>
+      <button id="bookmark" (click)="toggleBookmark()">
+
+
+
+        <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg" id="bookmark-icon" [ngStyle]="{'margin-left': bookmarked ? '145px' : '0px'}" [ngClass]="{'rotate': bookmarked}">
+          <g fill="none" fill-rule="evenodd">
+            <circle fill="#2F2F2F" cx="28" cy="28" r="28" [ngStyle]="{'fill' : bookmarked ? '#49a8a8' : 'black'}"/>
+            <path fill="#B1B1B1" d="M23 19v18l5-5.058L33 37V19z" [ngStyle]="{'fill' : bookmarked ? 'white' : 'grey'}"/>
+          </g>
+        </svg>
+
+
+
+        <!-- <img src="assets/images/icon-bookmark.svg" alt="" id="bookmark-icon" [ngStyle]="{'margin-left': bookmarked ? '145px' : '0px'}" [ngClass]="{'rotate': bookmarked}"/> -->
+        <p id="bookmark-text" [ngClass]="{'bookmarked-text': bookmarked} " [ngStyle]="{'margin-left': bookmarked ? '34px' : '84px'}" >{{bookmarkText()}}</p>
+      </button>
+    </div>
+  </div>
+
+
+  
+
+  <div class="card">
+    <ul>
+      <li>
+        {{ project.total_earned  + totalPayment | currency }}
+        <p>of {{ project.goal | currency }} backed</p>
+      </li>
+      <li id="count-separation">
+        {{ project.total_backer }}
+        <p>total backers</p>
+      </li>
+      <li>
+        56
+        <p>days left</p>
+      </li>
+    </ul>
+
+    <div class="progressBar">
+      <div class="progress" [ngStyle]="{'width': (project.total_earned / project.goal)*100 +'%'}" ></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="about">
+    
+      <h3>About this project</h3>
+      <br />
+      <p>
+        {{ project.about }}
+      </p>
+    </div>
+
+    <div class="rewards-box" *ngFor="let reward of project.rewards">
+      <app-modal></app-modal>
+      <div class="stand">
+        <div class="pledge-box">
+          <h3>{{ reward.name }}</h3>
+          <p class="pledge">Pledge ${{ reward.pledge }} or more</p>
+        </div>
+        <p>{{ reward.description }}</p>
+
+        <div class="box-btn">
+          <p class="stand-left">
+            <span class="left-number"> {{ reward.quantity }}</span> left
+          </p>
+          <button class="btn-global" (click)="toggleModal()">Select Reward</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Selection modal start -->
+<!-- Turn into compnent V2 -->
+
+<app-reward-modal *ngIf="showModal"></app-reward-modal>
+
+<!-- END MODAL -->
