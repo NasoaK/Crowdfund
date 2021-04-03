@@ -9,7 +9,7 @@ import { ProjectDetailsComponent } from "./project-details/project-details.compo
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { RewardModalComponent } from './project-details/reward-modal/reward-modal.component';
-
+import {AllProjectsService } from './services/all-projects.service';
 @NgModule({
   declarations: [
     AppComponent, 
@@ -20,7 +20,7 @@ import { RewardModalComponent } from './project-details/reward-modal/reward-moda
  
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [],
+  providers: [AllProjectsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 export interface IRewards {
-  nameR: string;
+  name: string;
   pledge: number;
   quantity: number;
   description: string;

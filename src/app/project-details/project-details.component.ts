@@ -3,6 +3,8 @@ import { NgForm } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { IProject } from "../projects-list/Project";
 import { IRewards } from "../projects-list/rewards";
+
+import { AllProjectsService} from "../services/all-projects.service";
 import { ProjectListService } from "../services/project-list.service";
 
 
@@ -18,23 +20,15 @@ export class ProjectDetailsComponent implements OnInit {
   /*   public selectReward(): any {
     this.reward.style.display = "flex";
   } */
-  public showModal:boolean;
+  
   public selectReward:boolean;
   public bookmarked:boolean;
   public selectPledge:boolean =false;
 
-  constructor(
-    private route: ActivatedRoute,
-    private projectlistservice: ProjectListService
-  ) {}
-
-public togglePledge():void{
+  public togglePledge():void{
   this.selectPledge = !this.selectPledge;
-}
- 
-  public toggleModal():void{
-    this.showModal = !this.showModal;
   }
+
 
   public selectRewards():void{
     this.selectReward= !this.selectReward
@@ -49,14 +43,16 @@ public togglePledge():void{
   }
 
   public reward : IRewards = <IRewards>{};
-   
+
+  constructor(
+    private route: ActivatedRoute,
+    private projectlistservice: ProjectListService,
+    private projectService: AllProjectsService
+  ) {}
+
 
  @Input() achat:number; 
-  //!
-  /* public reachGoal():number{
-    const bar = this.projectlistservice.getProjects().projects.goal
-  } */
-   //! 
+
 
   public bookmarkText():string{  
     if(this.bookmarked){
@@ -65,48 +61,62 @@ public togglePledge():void{
       return 'bookmark';
     }
   }
-
-  
-
-
   
   ngOnInit(): void {
-    /*     this.selectReward(); */
-    const id : number = +this.route.snapshot.paramMap.get("id");
-    this.projectlistservice.getProjects().subscribe((projects: IProject[]) => {
+  
+   const id : number = +this.route.snapshot.paramMap.get("id");
+   this.project = this.projectService.projects.find((project) => project.id === id);
+
+  console.log('id :'+id);
+  console.log('project :' +this.project);
+   /* this.projectlistservice.getProjects().subscribe((projects: IProject[]) => {
       this.project = projects.find((project) => project.id === id);
-      /* this.reward = this.project.rewards.find(reward) => reward.name === name  */
     });
     this.project.rewards;
     const name:string = this.route.snapshot.paramMap.get("nameR");
 
-    console.log(name+' : name');
-    console.log(id);
-    console.log(this.reward);
-    console.log(this.achat);
-    console.log(this.projectlistservice.getProjects());
-    
+ */
   }
-
 
   //* Modal & Modal Form
 
   public selectedReward?: IRewards;
-  public defaultPay: number;
+  public confirmPay:boolean=false;
+  public showModal:boolean;
+  public allPledges:boolean;
 
+  toggleModal():void{
+    this.showModal = !this.showModal;
+  }
+  toggleAllPledge(){
+    this.allPledges = !this.allPledges;
+    this.toggleModal();
+    this.confirmPay = false ;
+  }
+
+  succesPay(){
+    this.confirmPay=!this.confirmPay;
+  }
 
   onSelect(reward: IRewards): void {
     this.selectedReward = reward;
-    this.defaultPay = reward.pledge;
-    
+    this.confirmPay = false ;
+    console.log(this.selectedReward.pledge)
+    this.toggleModal()
   }
   
-  onSubmit(form: NgForm){
+  onSubmit(form: NgForm, reward:IRewards){
    const pay = form.value['payment'];
-   if(pay >= this.selectedReward.pledge ){
-     this.totalPayment = this.totalPayment + pay;
+   if(pay >= reward.pledge ){
+    /*  this.totalPayment = this.totalPayment + pay; */
+     this.project.total_earned = this.project.total_earned + pay;
+     this.succesPay();
+     reward.quantity--;
+     this.allPledges=false;
+     this.project.total_backer ++;
     }
   }
+
 
   public totalPayment : number=0 ;
 

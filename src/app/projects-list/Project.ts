@@ -11,6 +11,7 @@ export interface IProject {
   total_backer: number;
   project_debut: string;
   project_end: string;
+  thanks:string,
   about: String;
   rewards: IRewards[];
 }

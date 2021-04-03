@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from "@angular/core";
 import { ProjectListService } from "../services/project-list.service";
+import { AllProjectsService } from "../services/all-projects.service";
 import { IProject } from "./Project";
 import { IRewards } from "./Rewards";
 
@@ -11,7 +12,7 @@ import { IRewards } from "./Rewards";
 export class ProjectsListComponent implements OnInit {
   public title = " liste Projects";
 
-  public projects: IProject[] = [
+  public projectos: IProject[] = [
     /*  {
       id: 1,
       name: "Mastercraft Bamboo Monitor Riser",
@@ -68,7 +69,10 @@ export class ProjectsListComponent implements OnInit {
 
   public errMsg!: string;
 
-  constructor(private projectlistservice: ProjectListService) {}
+  constructor(
+    private projectlistservice: ProjectListService,
+    private projectService: AllProjectsService
+  ) {}
 
   get projectFilter(): string {
     return this._projectFilter;
@@ -105,18 +109,23 @@ public toggleSelected():void{
   this.rewardSelected = !this.rewardSelected;
 }
 
+    public projects :IProject[] = this.projectService.projects;
+
+
   @Output()
   rating: number = 2;
 
   @Input()
   ngOnInit(): void {
-    this.projectlistservice.getProjects().subscribe({
+this.filteredProjects = this.projects;
+
+   /*  this.projectlistservice.getProjects().subscribe({
       next: (projects) => {
         this.projects = projects;
         this.filteredProjects = this.projects;
       },
       error: (err) => (this.errMsg = err),
     });
-    this.projectFilter = "";
+    this.projectFilter = ""; */
   }
 }
