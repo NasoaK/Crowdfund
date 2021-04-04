@@ -27,19 +27,22 @@ projects :IProject[] = [
         name: "Bamboo",
         pledge: 25,
         quantity: 101,
-        description: " You get an ergonomic stand made of natural bamboo. You've helped us\nlaunch our promotional campaign, and you’ll be added to a special\nBacker member list."
+        description: " You get an ergonomic stand made of natural bamboo. You've helped us\nlaunch our promotional campaign, and you’ll be added to a special\nBacker member list.",
+        hide:false
       },
       {
         name: "Black Edition Stand",
         pledge: 75,
         quantity: 64,
-        description: "You get a Black Special Edition computer stand and a personal thank"
+        description: "You get a Black Special Edition computer stand and a personal thank",
+        hide:false
       },
       {
         name: "Mahogany Special Edition ",
         pledge: 200,
         quantity: 100,
-        description: "   You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included."
+        description: "   You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
+        hide:false
       }
     ]
   }

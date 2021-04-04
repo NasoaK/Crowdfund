@@ -61,6 +61,12 @@ export class ProjectDetailsComponent implements OnInit {
       return 'bookmark';
     }
   }
+
+  allHide(){
+    this.project.rewards.forEach(rewardo => {
+      rewardo.hide = false ;
+    });
+  }
   
   ngOnInit(): void {
   
@@ -76,11 +82,13 @@ export class ProjectDetailsComponent implements OnInit {
     const name:string = this.route.snapshot.paramMap.get("nameR");
 
  */
+
   }
 
   //* Modal & Modal Form
 
   public selectedReward?: IRewards;
+  public selectedRewardo?: IRewards;
   public confirmPay:boolean=false;
   public showModal:boolean;
   public allPledges:boolean;
@@ -99,12 +107,22 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   onSelect(reward: IRewards): void {
+     console.log(reward)
     this.selectedReward = reward;
     this.confirmPay = false ;
-    console.log(this.selectedReward.pledge)
     this.toggleModal()
   }
+
+    
+
+  hideShowEffect(reward: IRewards): void {
+    this.allHide();
+    reward.hide = !reward.hide;
+   this.confirmPay = false ;
+   reward= this.selectedRewardo;
+ }
   
+ 
   onSubmit(form: NgForm, reward:IRewards){
    const pay = form.value['payment'];
    if(pay >= reward.pledge ){

@@ -1,5 +1,6 @@
-<img src="{{ project.image }}" alt="" class="project-header" />
+<!--* PROJECT introduction -->
 
+<img src="{{ project.image }}" alt="" class="project-header" />
 <section>
   <div class="card">
     <img id="project-logo" src="{{ project.logo }}" alt="" />
@@ -26,9 +27,7 @@
     </div>
   </div>
 
-
-  
-
+<!--*   PROJECT stats -->
   <div class="card">
     <ul>
       <li>
@@ -59,6 +58,8 @@
       </p>
     </div>
 
+<!--*   REWARDS -->
+
     <div class="rewards-box" *ngFor="let reward of project.rewards" >
      
       <div class="stand">
@@ -79,65 +80,69 @@
   </div>
 </section>
 
-<!-- Selection modal start -->
-<!-- Turn into compnent V2 -->
+<!--* MODAL -->
+<!-- TODO : Turn into compnent -->
 
 <div class="modal" *ngIf="showModal">
-  {{showModal ? 'cacher' : 'bonjour'}}
   <div class="modal-box">
 
-    <div *ngIf="!confirmPay && allPledges">
-      <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" (click)="toggleAllPledge()"  id="closeCross"><path d="M11.314 0l2.828 2.828L9.9 7.071l4.243 4.243-2.828 2.828L7.07 9.9l-4.243 4.243L0 11.314 4.242 7.07 0 2.828 2.828 0l4.243 4.242L11.314 0z" fill="#000" fill-rule="evenodd" opacity=".4"/></svg >
-        <h3>Back this project</h3>
-        
-        <p id="modal-text">
-          Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the
-          world?
-        </p>
-        
-        <!--  PLEDGE 0$ -->
-           <div class="modal-rewards">
-          <input type="radio" name="" id="" class="modal-rewards-checkbox" />
-          <h3>Pledge with no rewards</h3>
-          <p>
-            Choose to support us without a rewards if you simply believe in our
-                    project . As a backer, you will be signed up to receive product updates
-                    via email
-                  </p>
-          </div>
-        
-        <div class="modal-rewards-box" >
-
-          <div class="modal-rewards" (click)="togglePledge()" *ngFor="let reward of project.rewards">
+    <!--* Modal with all rewards -->
+      <div *ngIf="!confirmPay && allPledges">
+        <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" (click)="toggleAllPledge()"  id="closeCross"><path d="M11.314 0l2.828 2.828L9.9 7.071l4.243 4.243-2.828 2.828L7.07 9.9l-4.243 4.243L0 11.314 4.242 7.07 0 2.828 2.828 0l4.243 4.242L11.314 0z" fill="#000" fill-rule="evenodd" opacity=".4"/></svg >
+          <h3>Back this project</h3>
           
-          <!--  <input type="radio" name="" id="" class="modal-rewards-checkbox"  /> -->
-
-            <div class="modal-pledge-box">
-              <h3 style="margin-right: 20px">{{ reward.name }}</h3>
-              <p class="pledge">Pledge ${{ reward.pledge }} or more</p>
+          <p id="modal-text">
+            Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the
+            world?
+          </p>
+          
+          <!-- DEFAULT PLEDGE -->
+            <div class="modal-rewards">
+            <input type="radio" name="" id="" class="modal-rewards-checkbox" />
+            <h3>Pledge with no rewards</h3>
+            <p>
+              Choose to support us without a rewards if you simply believe in our
+                      project . As a backer, you will be signed up to receive product updates
+                      via email
+                    </p>
             </div>
+          <!-- PROJECT PLEDGE -->
+          <div class="modal-rewards-box" >
 
-            <p>{{ reward.description }}</p>
+            <div class="modal-rewards" 
+              (click)="hideShowEffect(reward)" 
+              *ngFor="let reward of project.rewards"
 
-            <div class="box-btn">
+              [ngClass]="{'westSide' : reward.hide, 'eastSide': !reward.hide }"
+     >
+            
+            <!--  <input type="radio" name="" id="" class="modal-rewards-checkbox"  /> -->
 
-              <p class="modal-rewards-left">
-                <strong style="font-size: larger; margin-right: 5px">
-                  {{ reward.quantity }}</strong>left</p>
-              <div class="modal-rewards-bottom" >
-                <p><em>Enter your pledge</em></p>
-                  <form (ngSubmit)="onSubmit(f,reward)" #f="ngForm">
-                    <div class="input-btn">
-                      <p >$</p>
-                      <input type="number"  name="payment" min="{{reward.pledge | currency}}" [ngModel]="reward.pledge" required>
-                    </div>
-                    <button type="submit" class="btn-global" [disabled]="f.invalid" >Continue</button>
-                  </form>
+              <div class="modal-pledge-box" >
+                <h3 style="margin-right: 20px">{{ reward.name }}</h3>
+                <p class="pledge">Pledge ${{ reward.pledge }} or more</p>
+              </div>
+              <p>{{ reward.description }}</p>
+              <div class="box-btn">
+                <p class="modal-rewards-left">
+                  <strong style="font-size: larger; margin-right: 5px">
+                    {{ reward.quantity }}</strong>left</p>
+
+                <div class="modal-rewards-bottom bottomSlide" *ngIf="reward.hide">
+                  <p><em>Enter your pledge</em></p>
+                    <form (ngSubmit)="onSubmit(f,reward)" #f="ngForm">
+                      <div class="input-btn">
+                        <p >$</p>
+                        <input type="number"  name="payment" min="{{reward.pledge | currency}}" [ngModel]="reward.pledge" required>
+                      </div>
+                      <button type="submit" class="btn-global" [disabled]="f.invalid" >Continue</button>
+                    </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-    </div>
+      </div>
+    <!--*  Modal selected reward -->
       <div *ngIf="!confirmPay && !allPledges">
         <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" (click)="toggleModal()"  id="closeCross"><path d="M11.314 0l2.828 2.828L9.9 7.071l4.243 4.243-2.828 2.828L7.07 9.9l-4.243 4.243L0 11.314 4.242 7.07 0 2.828 2.828 0l4.243 4.242L11.314 0z" fill="#000" fill-rule="evenodd" opacity=".4"/></svg >
           <h3>Back this project</h3>
@@ -146,24 +151,9 @@
             Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the
             world?
           </p>
-          
-          <!--  PLEDGE 0$ -->
-          <!--    <div class="modal-rewards">
-            <input type="radio" name="" id="" class="modal-rewards-checkbox" />
-            <h3>Pledge with no rewards</h3>
-            <p>
-              Choose to support us without a rewards if you simply believe in our
-                      project . As a backer, you will be signed up to receive product updates
-                      via email
-                    </p>
-            </div> -->
-          
           <div class="modal-rewards-box" >
 
-            <div class="modal-rewards" (click)="togglePledge()" >
-            
-            <!--  <input type="radio" name="" id="" class="modal-rewards-checkbox"  /> -->
-
+            <div class="modal-rewards" (click)="togglePledge()" [ngClass]="{'westSide' : !reward.hide}" >
               <div class="modal-pledge-box">
                 <h3 style="margin-right: 20px">{{ selectedReward.name }}</h3>
                 <p class="pledge">Pledge ${{ selectedReward.pledge }} or more</p>
@@ -180,7 +170,6 @@
                 <div class="modal-rewards-bottom" >
 
                   <p><em>Enter your pledge</em></p>
-
                 
                     <form (ngSubmit)="onSubmit(f,selectedReward)" #f="ngForm">
                       <div class="input-btn">
@@ -189,25 +178,18 @@
                       </div>
                       <button type="submit" class="btn-global" [disabled]="f.invalid" >Continue</button>
                     </form>
-                  
-                    
-                
                 </div>
               </div>
-
             </div>
           </div>
       </div>
-
+    <!--* Modal contribution sucess -->
       <div *ngIf="confirmPay" style="text-align: center; width: 100%;">
           <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" style="transform: scale(1.3); margin-bottom:30px"><g fill="none" fill-rule="evenodd"><circle fill="#3CB3AB" cx="32" cy="32" r="32"/><path stroke="#FFF" stroke-width="5" d="M20 31.86L28.093 40 44 24"/></g></svg>
           <h1 style="margin-bottom: 20px;">Thanks you for suppport !</h1>
           <p style="margin-bottom: 20px;">{{project.thanks}}</p>
           <button class="btn-global" (click)="toggleModal()"  >Get it !</button>
       </div>
-
-       <div>
-        </div>
   </div>
 </div>
 
