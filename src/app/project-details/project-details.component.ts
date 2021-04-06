@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { IProject } from "../projects-list/Project";
 import { IRewards } from "../projects-list/rewards";
+import { LayoutModule } from '@angular/cdk/layout'
 
 import { AllProjectsService} from "../services/all-projects.service";
 import { ProjectListService } from "../services/project-list.service";
@@ -21,7 +22,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.reward.style.display = "flex";
   } */
   
-  public selectReward:boolean;
+/*   public selectReward:boolean; */
   public bookmarked:boolean;
   public selectPledge:boolean =false;
 
@@ -30,9 +31,9 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
 
-  public selectRewards():void{
+/*   public selectRewards():void{
     this.selectReward= !this.selectReward
-  }
+  } */
   
   public toggleBookmark(): void{
     this.bookmarked = !this.bookmarked;
@@ -47,7 +48,8 @@ export class ProjectDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private projectlistservice: ProjectListService,
-    private projectService: AllProjectsService
+    private projectService: AllProjectsService,
+    private layout: LayoutModule
   ) {}
 
 
@@ -62,12 +64,15 @@ export class ProjectDetailsComponent implements OnInit {
     }
   }
 
-  allHide(){
-    this.project.rewards.forEach(rewardo => {
-      rewardo.hide = false ;
+    resetHide(){
+    this.project.rewards.forEach(reward => {
+      reward.hide = false ;
     });
   }
   
+  isSmallScreen: boolean;
+  
+
   ngOnInit(): void {
   
    const id : number = +this.route.snapshot.paramMap.get("id");
@@ -116,10 +121,10 @@ export class ProjectDetailsComponent implements OnInit {
     
 
   hideShowEffect(reward: IRewards): void {
-    this.allHide();
+    this.resetHide();
     reward.hide = !reward.hide;
    this.confirmPay = false ;
-   reward= this.selectedRewardo;
+   reward= this.selectedReward;
  }
   
  
@@ -136,7 +141,7 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
 
-  public totalPayment : number=0 ;
+  public totalPayment : number = 0 ;
 
  
 }

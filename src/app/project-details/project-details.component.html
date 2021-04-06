@@ -10,7 +10,7 @@
       <p>{{ project.introduction }}</p>
     </div>
 
-    <div class="box-btn">
+    <div class="box-btn" style="display: flex;">
       <button class="btn-global" (click)="toggleAllPledge()">Back this project</button>
       <button id="bookmark" (click)="toggleBookmark()">
 
@@ -31,15 +31,20 @@
   <div class="card">
     <ul>
       <li>
-        {{ project.total_earned  + totalPayment | currency }} 
-        <p>{{ project.goal  | currency}}</p>
+        <div class="project-figure"> {{ project.total_earned  + totalPayment | currency }} </div>
+         <p> of <span style="padding-right: 5px;padding-left: 5px;">{{ project.goal  | currency}}</span> backed</p>
       </li>
       <li id="count-separation">
-        {{ project.total_backer }}
+        <div class="project-figure"> 
+          {{ project.total_backer }}
+        </div>
+          
         <p>total backers</p>
       </li>
       <li>
-        56
+        <div class="project-figure">
+          56
+        </div>
         <p>days left</p>
       </li>
     </ul>
@@ -97,8 +102,8 @@
           </p>
           
           <!-- DEFAULT PLEDGE -->
-            <div class="modal-rewards">
-            <input type="radio" name="" id="" class="modal-rewards-checkbox" />
+            <div class="modal-rewards" style="border: 1px solid lightgrey">
+           <!--  <input type="radio" name="" id="" class="modal-rewards-checkbox" /> -->
             <h3>Pledge with no rewards</h3>
             <p>
               Choose to support us without a rewards if you simply believe in our
@@ -113,11 +118,11 @@
               (click)="hideShowEffect(reward)" 
               *ngFor="let reward of project.rewards"
 
-              [ngClass]="{'westSide' : reward.hide, 'eastSide': !reward.hide }"
+              [ngClass]="{'opened-reward' : reward.hide, 'closed-reward': !reward.hide }"
      >
             
             <!--  <input type="radio" name="" id="" class="modal-rewards-checkbox"  /> -->
-
+            <div class="modal-rewards-top">
               <div class="modal-pledge-box" >
                 <h3 style="margin-right: 20px">{{ reward.name }}</h3>
                 <p class="pledge">Pledge ${{ reward.pledge }} or more</p>
@@ -127,7 +132,9 @@
                 <p class="modal-rewards-left">
                   <strong style="font-size: larger; margin-right: 5px">
                     {{ reward.quantity }}</strong>left</p>
-
+                  </div>
+                </div>
+                    
                 <div class="modal-rewards-bottom bottomSlide" *ngIf="reward.hide">
                   <p><em>Enter your pledge</em></p>
                     <form (ngSubmit)="onSubmit(f,reward)" #f="ngForm">
@@ -138,7 +145,6 @@
                       <button type="submit" class="btn-global" [disabled]="f.invalid" >Continue</button>
                     </form>
                 </div>
-              </div>
             </div>
           </div>
       </div>
@@ -152,20 +158,23 @@
             world?
           </p>
           <div class="modal-rewards-box" >
-
-            <div class="modal-rewards" (click)="togglePledge()" [ngClass]="{'westSide' : !reward.hide}" >
-              <div class="modal-pledge-box">
-                <h3 style="margin-right: 20px">{{ selectedReward.name }}</h3>
-                <p class="pledge">Pledge ${{ selectedReward.pledge }} or more</p>
-              </div>
-
-              <p>{{ selectedReward.description }}</p>
-
-              <div class="box-btn">
-
-                <p class="modal-rewards-left">
-                  <strong style="font-size: larger; margin-right: 5px">
-                    {{ selectedReward.quantity }}</strong>left</p>
+            
+            <div class="modal-rewards" (click)="togglePledge()" [ngClass]="{'opened-reward' : !reward.hide}" >
+                <div class="modal-rewards-top">
+                <div class="modal-pledge-box">
+                  <h3 style="margin-right: 20px">{{ selectedReward.name }}</h3>
+                  <p class="pledge">Pledge ${{ selectedReward.pledge }} or more</p>
+                </div>
+                
+                <p>{{ selectedReward.description }}</p>
+                
+                <div class="box-btn">
+                  
+                  <p class="modal-rewards-left">
+                    <strong style="font-size: larger; margin-right: 5px">
+                      {{ selectedReward.quantity }}</strong>left</p>
+                    </div>
+                  </div>
 
                 <div class="modal-rewards-bottom" >
 
@@ -178,7 +187,6 @@
                       </div>
                       <button type="submit" class="btn-global" [disabled]="f.invalid" >Continue</button>
                     </form>
-                </div>
               </div>
             </div>
           </div>

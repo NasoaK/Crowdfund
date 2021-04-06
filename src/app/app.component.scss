@@ -6,15 +6,16 @@ nav {
   width: 100%;
   top: 0;
   position: fixed;
-  box-shadow: 0px 107px 75px -27px rgba(0, 0, 0, 0.75) inset;
+ /*  box-shadow: 0px 107px 75px -27px rgba(0, 0, 0, 0.75) inset;
   -webkit-box-shadow: 0px 107px 75px -27px rgba(0, 0, 0, 0.75) inset;
   -moz-box-shadow: 0px 107px 75px -27px rgba(0, 0, 0, 0.75) inset;
-  z-index: 5;
+   */z-index: 5;
 }
+
 
 nav #logo {
   font-weight: 700;
-  font-size: xx-large;
+  font-size: x-large;
 }
 
 nav ul {
@@ -31,3 +32,60 @@ a {
   text-decoration: none;
 }
 
+#btn-menu{
+    display: none;
+}
+
+@media(max-width: 1050px){
+
+
+  .toggleMenu{
+    background-color: rgba(12, 12, 12, 0.521);
+    height: 100vh;
+    transition: 0.5s;
+  }
+
+  nav{
+    padding: 30px 7vw 20px 7vw;
+    display: block;
+    justify-content: none;
+    -webkit-box-shadow: inset 0px 109px 39px -63px #000000a3; 
+    box-shadow: inset 0px 80px 50px -45px #000000a3;
+ 
+  }
+
+  nav ul{
+    display: block;
+    margin-top: 30px;
+    background-color: white;
+    color: black;
+    padding: 0px;
+    border-radius: 10px;
+    
+    
+  }
+  nav ul li {
+    padding: 21px ;
+    border-bottom: 1px solid rgb(235, 235, 235);
+  }
+
+  li:hover {
+    box-shadow: inset -1px -1px 3px rgba(94, 94, 94, 0.439);
+  }
+  #btn-menu{
+    display: block;
+    position: absolute;
+    right: 7vw;
+    top: 30px;
+  }
+
+  a{
+    color: black;
+    font-weight: 500;
+    font-size: large;
+  }
+  li:hover a{
+    font-size: x-large;
+  }
+  
+}

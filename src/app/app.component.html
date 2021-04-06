@@ -1,12 +1,18 @@
 <header>
-  <nav>
+  <nav [ngClass]="{'toggleMenu' : menuState}">
     <span id="logo"> crowdfund</span>
 
-    <ul>
-      <li><a routerLink="/home" routerLinkActive="active"> About</a></li>
+    <ul *ngIf="menuState">
+      <li style="border-top-left-radius: 10px; border-top-right-radius: 10px;"><a routerLink="/home" routerLinkActive="active"> About</a></li>
       <li><a routerLink="/project" routerLinkActive="active">Discover</a></li>
-      <li><a routerLink="#" routerLinkActive="active">Get Started</a></li>
+      <li  style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"><a routerLink="#" routerLinkActive="active">Get Started</a></li>
     </ul>
+
+    <span id="btn-menu" (click)="toggleMenu()">
+      <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg" *ngIf="!menuState" ><g fill="#FFF" fill-rule="evenodd"><path d="M0 0h16v3H0zM0 6h16v3H0zM0 12h16v3H0z"/></g></svg>
+      <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" *ngIf="menuState" fill="#FFF" ><path d="M11.314 0l2.828 2.828L9.9 7.071l4.243 4.243-2.828 2.828L7.07 9.9l-4.243 4.243L0 11.314 4.242 7.07 0 2.828 2.828 0l4.243 4.242L11.314 0z" fill="#FFF" fill-rule="evenodd" /></svg>
+    </span>
+
   </nav>
 </header>
 
