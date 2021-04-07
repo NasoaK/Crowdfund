@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IProject } from '../Projects-list/Project';
-import { IRewards } from "../projects-list/rewards";
+
 
 @Injectable({
   providedIn: 'root'

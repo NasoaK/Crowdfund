@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { IProject } from "../projects-list/Project";
-import { IRewards } from "../projects-list/rewards";
+import { IRewards } from "../projects-list/Rewards";
 import { LayoutModule } from '@angular/cdk/layout'
 
 import { AllProjectsService} from "../services/all-projects.service";
@@ -71,7 +71,7 @@ export class ProjectDetailsComponent implements OnInit {
   }
   
   isSmallScreen: boolean;
-  
+
 
   ngOnInit(): void {
   
