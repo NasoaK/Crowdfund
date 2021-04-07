@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IProject } from '../Projects-list/Project';
+import { IProject } from '../projects-list/Project';
 
 
 @Injectable({
