@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { IProject } from "../../projects-list/Project";
-import { IRewards } from "../../projects-list/rewards";
+import { IRewards } from "../../projects-list/Rewards";
 import { ProjectListService } from "../../services/project-list.service";
 
 

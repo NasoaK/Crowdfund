@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import {LayoutModule} from '@angular/cdk/layout';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -10,6 +11,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { RewardModalComponent } from './project-details/reward-modal/reward-modal.component';
 import {AllProjectsService } from './services/all-projects.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatRadioModule} from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent, 
@@ -19,7 +22,7 @@ import {AllProjectsService } from './services/all-projects.service';
     RewardModalComponent,
  
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule,LayoutModule, MatRadioModule],
   providers: [AllProjectsService],
   bootstrap: [AppComponent],
 })

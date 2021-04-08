@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IProject } from '../Projects-list/Project'
-import { IRewards } from "../projects-list/rewards"
+import { IProject } from '../projects-list/Project';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ projects :IProject[] = [
     project_debut: "2021-03-05",
     project_end: "2021-05-05",
     thanks:"Your pledge bring us one step closer to sharing Mastercraft Bamboo Monitor Riser worldwide . You will get an email once our campaign is completed",
-    about: "The Mastercraft Bamboo Monitor Riser is a sturdy and stylish\nplatform that elevates your screen to a more comfortable viewing\nheight. Placing your monitor at eye level has the potential to\nimprove your posture and make you more comfortable while at work,\nhelping you stay focused on the task at hand .",
+    about: "The Mastercraft Bamboo Monitor Riser is a sturdy and stylish\nplatform that elevates your screen to a more comfortable viewing\nheight. Placing your monitor at eye level has the potential to\nimprove your posture and make you more comfortable while at work,\nhelping you stay focused on the task at hand . \n\n Featuring artisan craftmanship, the simplicity of design creates extra desk space below your computer to allows notepads, pens, and USB sticks to be stored under the stand.",
     rewards: [
       { 
         name: "Bamboo",

@@ -2,7 +2,6 @@ import { Component, Input, OnInit, Output } from "@angular/core";
 import { ProjectListService } from "../services/project-list.service";
 import { AllProjectsService } from "../services/all-projects.service";
 import { IProject } from "./Project";
-import { IRewards } from "./Rewards";
 
 @Component({
   selector: "app-projects-list",

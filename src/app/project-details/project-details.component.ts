@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { IProject } from "../projects-list/Project";
-import { IRewards } from "../projects-list/rewards";
+import { IRewards } from "../projects-list/Rewards";
+import { LayoutModule } from '@angular/cdk/layout'
 
 import { AllProjectsService} from "../services/all-projects.service";
 import { ProjectListService } from "../services/project-list.service";
@@ -17,11 +18,7 @@ export class ProjectDetailsComponent implements OnInit {
   public project: IProject = <IProject>{};
 
 
-  /*   public selectReward(): any {
-    this.reward.style.display = "flex";
-  } */
-  
-  public selectReward:boolean;
+/*   public selectReward:boolean; */
   public bookmarked:boolean;
   public selectPledge:boolean =false;
 
@@ -30,9 +27,9 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
 
-  public selectRewards():void{
+/*   public selectRewards():void{
     this.selectReward= !this.selectReward
-  }
+  } */
   
   public toggleBookmark(): void{
     this.bookmarked = !this.bookmarked;
@@ -47,7 +44,8 @@ export class ProjectDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private projectlistservice: ProjectListService,
-    private projectService: AllProjectsService
+    private projectService: AllProjectsService,
+    private layout: LayoutModule
   ) {}
 
 
@@ -62,12 +60,10 @@ export class ProjectDetailsComponent implements OnInit {
     }
   }
 
-  allHide(){
-    this.project.rewards.forEach(rewardo => {
-      rewardo.hide = false ;
-    });
-  }
-  
+   
+  isSmallScreen: boolean;
+
+
   ngOnInit(): void {
   
    const id : number = +this.route.snapshot.paramMap.get("id");
@@ -79,10 +75,7 @@ export class ProjectDetailsComponent implements OnInit {
       this.project = projects.find((project) => project.id === id);
     });
     this.project.rewards;
-    const name:string = this.route.snapshot.paramMap.get("nameR");
-
- */
-
+    const name:string = this.route.snapshot.paramMap.get("nameR"); */
   }
 
   //* Modal & Modal Form
@@ -92,6 +85,17 @@ export class ProjectDetailsComponent implements OnInit {
   public confirmPay:boolean=false;
   public showModal:boolean;
   public allPledges:boolean;
+  public defaultSelected:boolean;
+
+
+
+  resetHide(){
+    this.project.rewards.forEach(reward => {
+      reward.hide = false ;
+    });
+    this.defaultSelected = false
+  }
+  
 
   toggleModal():void{
     this.showModal = !this.showModal;
@@ -116,27 +120,41 @@ export class ProjectDetailsComponent implements OnInit {
     
 
   hideShowEffect(reward: IRewards): void {
-    this.allHide();
+    this.resetHide();
     reward.hide = !reward.hide;
    this.confirmPay = false ;
-   reward= this.selectedRewardo;
+   reward= this.selectedReward;
  }
-  
- 
-  onSubmit(form: NgForm, reward:IRewards){
+
+ selectDefault(){
+  this.resetHide();
+  this.defaultSelected = true;
+
+ }
+    onSubmit(form: NgForm, reward:IRewards){
    const pay = form.value['payment'];
    if(pay >= reward.pledge ){
-    /*  this.totalPayment = this.totalPayment + pay; */
-     this.project.total_earned = this.project.total_earned + pay;
+     this.totalPayment = this.totalPayment + pay;
+     this.project.total_earned = this.project.total_earned + this.totalPayment;
      this.succesPay();
      reward.quantity--;
      this.allPledges=false;
      this.project.total_backer ++;
     }
   }
-
-
-  public totalPayment : number=0 ;
+    submit(form: NgForm){
+    const pay = form.value['payment'];
+    if(pay>=this.defaultPledge){
+      this.totalPayment = this.totalPayment + pay;
+           this.project.total_earned = this.project.total_earned + this.totalPayment;
+      this.succesPay();
+      this.allPledges=false;
+      this.project.total_backer ++;
+    }
+     
+   }
+   public defaultPledge : number = 0;
+  public totalPayment : number = 0 ;
 
  
 }
