@@ -18,10 +18,6 @@ export class ProjectDetailsComponent implements OnInit {
   public project: IProject = <IProject>{};
 
 
-  /*   public selectReward(): any {
-    this.reward.style.display = "flex";
-  } */
-  
 /*   public selectReward:boolean; */
   public bookmarked:boolean;
   public selectPledge:boolean =false;
@@ -84,10 +80,7 @@ export class ProjectDetailsComponent implements OnInit {
       this.project = projects.find((project) => project.id === id);
     });
     this.project.rewards;
-    const name:string = this.route.snapshot.paramMap.get("nameR");
-
- */
-
+    const name:string = this.route.snapshot.paramMap.get("nameR"); */
   }
 
   //* Modal & Modal Form
@@ -126,21 +119,30 @@ export class ProjectDetailsComponent implements OnInit {
    this.confirmPay = false ;
    reward= this.selectedReward;
  }
-  
- 
-  onSubmit(form: NgForm, reward:IRewards){
+
+    onSubmit(form: NgForm, reward:IRewards){
    const pay = form.value['payment'];
    if(pay >= reward.pledge ){
-    /*  this.totalPayment = this.totalPayment + pay; */
-     this.project.total_earned = this.project.total_earned + pay;
+     this.totalPayment = this.totalPayment + pay;
+     this.project.total_earned = this.project.total_earned + this.totalPayment;
      this.succesPay();
      reward.quantity--;
      this.allPledges=false;
      this.project.total_backer ++;
     }
   }
-
-
+    submit(form: NgForm){
+    const pay = form.value['payment'];
+    if(pay>=this.defaultPledge){
+      this.totalPayment = this.totalPayment + pay;
+           this.project.total_earned = this.project.total_earned + this.totalPayment;
+      this.succesPay();
+      this.allPledges=false;
+      this.project.total_backer ++;
+    }
+     
+   }
+   public defaultPledge : number = 0;
   public totalPayment : number = 0 ;
 
  

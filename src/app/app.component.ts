@@ -27,10 +27,10 @@ export class AppComponent implements OnInit{
       this.menuState=false
 
     this.isSmallScreen = true ;
-    }else{
+    }else if(this.layout.isMatched('(min-width: 599px)')){
       console.log('big screen')
       this.isSmallScreen = false;
-      this.menuState=true
+      this.menuState = true ;
     }
     console.log(this.isSmallScreen);
   }

@@ -12,6 +12,7 @@ import { FormsModule } from "@angular/forms";
 import { RewardModalComponent } from './project-details/reward-modal/reward-modal.component';
 import {AllProjectsService } from './services/all-projects.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatRadioModule} from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent, 
@@ -21,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RewardModalComponent,
  
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule, LayoutModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule,LayoutModule, MatRadioModule],
   providers: [AllProjectsService],
   bootstrap: [AppComponent],
 })

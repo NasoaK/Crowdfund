@@ -14,15 +14,14 @@
       <button class="btn-global" (click)="toggleAllPledge()">Back this project</button>
       <button id="bookmark" (click)="toggleBookmark()">
 
-        <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg" id="bookmark-icon" [ngStyle]="{'margin-left': bookmarked ? '145px' : '0px'}" [ngClass]="{'rotate': bookmarked}">
+        <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg" id="bookmark-icon"  [ngClass]="{'rotate-bkm': bookmarked,'translate-bkm':bookmarked}">
           <g fill="none" fill-rule="evenodd">
             <circle fill="#2F2F2F" cx="28" cy="28" r="28" [ngStyle]="{'fill' : bookmarked ? '#49a8a8' : 'black'}"/>
             <path fill="#B1B1B1" d="M23 19v18l5-5.058L33 37V19z" [ngStyle]="{'fill' : bookmarked ? 'white' : 'grey'}"/>
           </g>
         </svg>
 
-        <!-- <img src="assets/images/icon-bookmark.svg" alt="" id="bookmark-icon" [ngStyle]="{'margin-left': bookmarked ? '145px' : '0px'}" [ngClass]="{'rotate': bookmarked}"/> -->
-        <p id="bookmark-text" [ngClass]="{'bookmarked-text': bookmarked} " [ngStyle]="{'margin-left': bookmarked ? '34px' : '84px'}" >{{bookmarkText()}}</p>
+        <p id="bookmark-text" *ngIf="!isSmallScreen" [ngClass]="{'bookmarked-text': bookmarked} " [ngStyle]="{'margin-left': bookmarked ? '34px' : '84px'}" >{{bookmarkText()}}</p>
       </button>
     </div>
   </div>
@@ -72,7 +71,7 @@
           <h3>{{ reward.name }}</h3>
           <p class="pledge">Pledge ${{ reward.pledge }} or more</p>
         </div>
-        <p>{{ reward.description }}</p>
+        <p class="reward-description">{{ reward.description }}</p>
 
         <div class="box-btn">
           <p class="stand-left">
@@ -94,7 +93,7 @@
     <!--* Modal with all rewards -->
       <div *ngIf="!confirmPay && allPledges">
         <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" (click)="toggleAllPledge()"  id="closeCross"><path d="M11.314 0l2.828 2.828L9.9 7.071l4.243 4.243-2.828 2.828L7.07 9.9l-4.243 4.243L0 11.314 4.242 7.07 0 2.828 2.828 0l4.243 4.242L11.314 0z" fill="#000" fill-rule="evenodd" opacity=".4"/></svg >
-          <h3>Back this project</h3>
+          <h2 style="font-size:large;"> Back this project</h2>
           
           <p id="modal-text">
             Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the
@@ -102,15 +101,27 @@
           </p>
           
           <!-- DEFAULT PLEDGE -->
-            <div class="modal-rewards" style="border: 1px solid lightgrey">
-           <!--  <input type="radio" name="" id="" class="modal-rewards-checkbox" /> -->
-            <h3>Pledge with no rewards</h3>
-            <p>
-              Choose to support us without a rewards if you simply believe in our
-                      project . As a backer, you will be signed up to receive product updates
-                      via email
-                    </p>
+            <div class="modal-rewards" style="border: 1px solid lightgrey" id="default-reward">
+              <div class="modal-rewards-top">
+                <div class="radio"> <div class="radio-select"  *ngIf="reward"></div> </div>
+                <div class="modal-pledge-box" >
+                    <h3>Pledge with no rewards</h3>
+                </div>
+                <p>Choose to support us without a rewards if you simply believe in our
+                    project . As a backer, you will be signed up to receive product updates via email</p>
+              </div>
+              <div class="modal-rewards-bottom bottomSlide" >
+                <p><em>Enter your pledge</em></p>
+                  <form (ngSubmit)="submit(df)" #df="ngForm">
+                    <div class="input-btn">
+                      <p >$</p>
+                      <input type="number"  name="payment" [ngModel]="defaultPledge">
+                    </div>
+                    <button type="submit" class="btn-global" >Continue</button>
+                  </form>
+              </div>
             </div>
+         
           <!-- PROJECT PLEDGE -->
           <div class="modal-rewards-box" >
 
@@ -118,20 +129,17 @@
               (click)="hideShowEffect(reward)" 
               *ngFor="let reward of project.rewards"
 
-              [ngClass]="{'opened-reward' : reward.hide, 'closed-reward': !reward.hide }"
-     >
-            
-            <!--  <input type="radio" name="" id="" class="modal-rewards-checkbox"  /> -->
-            <div class="modal-rewards-top">
-              <div class="modal-pledge-box" >
-                <h3 style="margin-right: 20px">{{ reward.name }}</h3>
-                <p class="pledge">Pledge ${{ reward.pledge }} or more</p>
-              </div>
-              <p>{{ reward.description }}</p>
-              <div class="box-btn">
-                <p class="modal-rewards-left">
-                  <strong style="font-size: larger; margin-right: 5px">
-                    {{ reward.quantity }}</strong>left</p>
+              [ngClass]="{'opened-reward' : reward.hide, 'closed-reward': !reward.hide }">
+                <div class="modal-rewards-top">
+                  <div class="radio"> <div class="radio-select"  *ngIf="reward.hide"></div> </div>
+                  <div class="modal-pledge-box" >
+                    <h3 style="margin-right: 20px">{{ reward.name }}</h3>
+                    <p class="pledge">Pledge ${{ reward.pledge }} or more</p>
+                  </div>
+                  <p>{{ reward.description }}</p>
+                  <div class="box-btn">
+                    <p class="modal-rewards-left">
+                      <strong style="font-size: larger; margin-right: 5px">{{ reward.quantity }}</strong>left</p>
                   </div>
                 </div>
                     
@@ -202,3 +210,6 @@
 </div>
 
 <!-- END MODAL -->
+<script>
+
+</script>
