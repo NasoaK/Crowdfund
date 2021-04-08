@@ -60,12 +60,7 @@ export class ProjectDetailsComponent implements OnInit {
     }
   }
 
-    resetHide(){
-    this.project.rewards.forEach(reward => {
-      reward.hide = false ;
-    });
-  }
-  
+   
   isSmallScreen: boolean;
 
 
@@ -90,6 +85,17 @@ export class ProjectDetailsComponent implements OnInit {
   public confirmPay:boolean=false;
   public showModal:boolean;
   public allPledges:boolean;
+  public defaultSelected:boolean;
+
+
+
+  resetHide(){
+    this.project.rewards.forEach(reward => {
+      reward.hide = false ;
+    });
+    this.defaultSelected = false
+  }
+  
 
   toggleModal():void{
     this.showModal = !this.showModal;
@@ -120,6 +126,11 @@ export class ProjectDetailsComponent implements OnInit {
    reward= this.selectedReward;
  }
 
+ selectDefault(){
+  this.resetHide();
+  this.defaultSelected = true;
+
+ }
     onSubmit(form: NgForm, reward:IRewards){
    const pay = form.value['payment'];
    if(pay >= reward.pledge ){

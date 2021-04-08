@@ -101,21 +101,25 @@
           </p>
           
           <!-- DEFAULT PLEDGE -->
-            <div class="modal-rewards" style="border: 1px solid lightgrey" id="default-reward">
+            <div class="modal-rewards" style="border: 1px solid lightgrey" id="default-reward" (click)="selectDefault()"[ngClass]="{'opened-reward' : defaultPledge, 'closed-reward': !defaultPledge }">
               <div class="modal-rewards-top">
-                <div class="radio"> <div class="radio-select"  *ngIf="reward"></div> </div>
+                <div class="radio"> <div class="radio-select"  *ngIf="defaultSelected"></div> </div>
                 <div class="modal-pledge-box" >
                     <h3>Pledge with no rewards</h3>
                 </div>
                 <p>Choose to support us without a rewards if you simply believe in our
                     project . As a backer, you will be signed up to receive product updates via email</p>
               </div>
-              <div class="modal-rewards-bottom bottomSlide" >
-                <p><em>Enter your pledge</em></p>
+              <div class="modal-rewards-bottom bottomSlide" *ngIf="defaultSelected">
+                <p><label for="payment"><em>Enter your pledge</em></label></p>
+  
                   <form (ngSubmit)="submit(df)" #df="ngForm">
                     <div class="input-btn">
-                      <p >$</p>
-                      <input type="number"  name="payment" [ngModel]="defaultPledge">
+                     <p>
+                       <i class="fas fa-heart"></i>
+                    </p> 
+                       
+                      <input type="number"  id="payment" name="payment"  placeholder="" [ngModel]="defaultPledge">
                     </div>
                     <button type="submit" class="btn-global" >Continue</button>
                   </form>
@@ -144,11 +148,11 @@
                 </div>
                     
                 <div class="modal-rewards-bottom bottomSlide" *ngIf="reward.hide">
-                  <p><em>Enter your pledge</em></p>
+                  <p><label for="payment"><em>Enter your pledge</em></label></p>
                     <form (ngSubmit)="onSubmit(f,reward)" #f="ngForm">
                       <div class="input-btn">
-                        <p >$</p>
-                        <input type="number"  name="payment" min="{{reward.pledge | currency}}" [ngModel]="reward.pledge" required>
+                        <p>$</p>
+                        <input type="number"  id="payment"name="payment" min="{{reward.pledge | currency}}" [ngModel]="reward.pledge" required>
                       </div>
                       <button type="submit" class="btn-global" [disabled]="f.invalid" >Continue</button>
                     </form>
