@@ -1,4 +1,4 @@
-import { IRewards } from "./Rewards";
+import { IRewards } from './Rewards';
 
 export interface IProject {
   id: number;
@@ -11,7 +11,7 @@ export interface IProject {
   total_backer: number;
   project_debut: string;
   project_end: string;
-  thanks:string,
+  thanks: string;
   about: String;
   rewards: IRewards[];
 }

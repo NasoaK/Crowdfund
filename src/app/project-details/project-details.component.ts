@@ -1,28 +1,27 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
-import { IProject } from "../projects-list/Project";
-import { IRewards } from "../projects-list/Rewards";
-import { LayoutModule } from '@angular/cdk/layout'
+import { Component, OnInit, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { IProject } from '../projects-list/Project';
+import { IRewards } from '../projects-list/Rewards';
+import { LayoutModule } from '@angular/cdk/layout';
 
-import { AllProjectsService} from "../services/all-projects.service";
-import { ProjectListService } from "../services/project-list.service";
+import { AllProjectsService} from '../services/all-projects.service';
+import { ProjectListService } from '../services/project-list.service';
 
 
 @Component({
-  selector: "app-project-details",
-  templateUrl: "./project-details.component.html",
-  styleUrls: ["./project-details.component.scss"],
+  selector: 'app-project-details',
+  templateUrl: './project-details.component.html',
+  styleUrls: ['./project-details.component.scss'],
 })
 export class ProjectDetailsComponent implements OnInit {
-  public project: IProject = <IProject>{};
-
+  public project: IProject = <IProject> {};
+  public reward: IRewards = <IRewards> {};
 
 /*   public selectReward:boolean; */
-  public bookmarked:boolean;
-  public selectPledge:boolean =false;
-
-  public togglePledge():void{
+  public bookmarked: boolean;
+  public selectPledge: boolean = false;
+  public togglePledge(): void{
   this.selectPledge = !this.selectPledge;
   }
 
@@ -30,16 +29,13 @@ export class ProjectDetailsComponent implements OnInit {
 /*   public selectRewards():void{
     this.selectReward= !this.selectReward
   } */
-  
   public toggleBookmark(): void{
     this.bookmarked = !this.bookmarked;
   }
 
-  public getPerct(a,b):number{
-    return a/b ;
+  public getPerct(a, b): number{
+    return a/b;
   }
-
-  public reward : IRewards = <IRewards>{};
 
   constructor(
     private route: ActivatedRoute,
@@ -49,10 +45,10 @@ export class ProjectDetailsComponent implements OnInit {
   ) {}
 
 
- @Input() achat:number; 
+ @Input() achat: number; 
 
 
-  public bookmarkText():string{  
+  public bookmarkText(): string{  
     if(this.bookmarked){
       return 'bookmarked';
     }else{
@@ -66,7 +62,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   
-   const id : number = +this.route.snapshot.paramMap.get("id");
+   const id: number = +this.route.snapshot.paramMap.get("id");
    this.project = this.projectService.projects.find((project) => project.id === id);
 
   console.log('id :'+id);
@@ -82,12 +78,10 @@ export class ProjectDetailsComponent implements OnInit {
 
   public selectedReward?: IRewards;
   public selectedRewardo?: IRewards;
-  public confirmPay:boolean=false;
-  public showModal:boolean;
-  public allPledges:boolean;
-  public defaultSelected:boolean;
-
-
+  public confirmPay: boolean=false;
+  public showModal: boolean;
+  public allPledges: boolean;
+  public defaultSelected: boolean;
 
   resetHide(){
     this.project.rewards.forEach(reward => {
@@ -97,7 +91,7 @@ export class ProjectDetailsComponent implements OnInit {
   }
   
 
-  toggleModal():void{
+  toggleModal(): void{
     this.showModal = !this.showModal;
   }
   toggleAllPledge(){

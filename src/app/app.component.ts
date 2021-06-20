@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LayoutModule } from '@angular/cdk/layout'
+import {Component, OnInit} from '@angular/core';
+import {LayoutModule} from '@angular/cdk/layout';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 
@@ -14,29 +14,22 @@ export class AppComponent implements OnInit{
   menuState: boolean;
   isSmallScreen: boolean;
 
-  toggleMenu():void{
-    this.menuState = !this.menuState ;
+  toggleMenu(): void{
+    this.menuState = !this.menuState;
   }
 
-  constructor (private layout: BreakpointObserver){}
+  constructor(private layout: BreakpointObserver){}
 
-  ngOnInit(){
-    
-    if(this.layout.isMatched('(max-width: 599px)')){
-      console.log('smallScreen')
-      this.menuState=false
-
-    this.isSmallScreen = true ;
-    }else if(this.layout.isMatched('(min-width: 599px)')){
-      console.log('big screen')
+  ngOnInit(): void{
+    if (this.layout.isMatched('(max-width: 599px)')){
+      console.log('smallScreen');
+      this.menuState = false;
+      this.isSmallScreen = true;
+    }else if (this.layout.isMatched('(min-width: 599px)')){
+      console.log('big screen');
       this.isSmallScreen = false;
       this.menuState = true ;
     }
     console.log(this.isSmallScreen);
   }
-
 }
-
-
-;
-

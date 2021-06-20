@@ -3,5 +3,5 @@ export class IRewards {
   pledge: number;
   quantity: number;
   description: string;
-  hide:boolean;
+  hide: boolean;
 }

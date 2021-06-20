@@ -1,15 +1,15 @@
-import { Component, Input, OnInit, Output } from "@angular/core";
-import { ProjectListService } from "../services/project-list.service";
-import { AllProjectsService } from "../services/all-projects.service";
-import { IProject } from "./Project";
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { ProjectListService } from '../services/project-list.service';
+import { AllProjectsService } from '../services/all-projects.service';
+import { IProject } from './Project';
 
 @Component({
-  selector: "app-projects-list",
-  templateUrl: "./projects-list.component.html",
-  styleUrls: ["./projects-list.component.scss"],
+  selector: 'app-projects-list',
+  templateUrl: './projects-list.component.html',
+  styleUrls: ['./projects-list.component.scss'],
 })
 export class ProjectsListComponent implements OnInit {
-  public title = " liste Projects";
+  public title = 'liste Projects';
 
   public projectos: IProject[] = [
     /*  {
@@ -25,28 +25,33 @@ export class ProjectsListComponent implements OnInit {
       project_debut: "2021-03-05",
       project_end: "2021-05-05",
       about:
-        "The Mastercraft Bamboo Monitor Riser is a sturdy and stylish\nplatform that elevates your screen to a more comfortable viewing\nheight. Placing your monitor at eye level has the potential to\nimprove your posture and make you more comfortable while at work,\nhelping you stay focused on the task at hand .",
+        "The Mastercraft Bamboo Monitor Riser is a sturdy and stylish\nplatform that elevates your screen to a more comfortable
+        viewing\nheight. Placing your monitor at eye level has the potential to\nimprove your posture and make you more
+        comfortable while at work,\nhelping you stay focused on the task at hand .",
       rewards: [
         {
           name: "bamboo Stand",
           pledge: 25,
           quantity: 101,
           description:
-            " You get an ergonomic stand made of natural bamboo. You've helped us\nlaunch our promotional campaign, and you’ll be added to a special\nBacker member list.",
+            " You get an ergonomic stand made of natural bamboo. You've helped us\nlaunch our promotional campaign, and you’ll be added to 
+            a special\nBacker member list.",
         },
         {
           name: "Black Edition Stand",
           pledge: 75,
           quantity: 64,
           description:
-            " You get an ergonomic stand made of natural bamboo. You've helped us\nlaunch our promotional campaign, and you’ll be added to a special\nBacker member list.",
+            " You get an ergonomic stand made of natural bamboo. You've helped us\nlaunch our promotional campaign, and you’ll be added to a special\nBacker
+            member list.",
         },
         {
           name: "Mahogany Special Edition ",
           pledge: 25,
           quantity: 100,
           description:
-            " You get an ergonomic stand made of natural bamboo. You've helped us\nlaunch our promotional campaign, and you’ll be added to a special\nBacker member list.",
+            " You get an ergonomic stand made of natural bamboo. You've helped us\nlaunch our promotional campaign, and you’ll be added to a 
+            special\nBacker member list.",
         },
       ],
     }, */
@@ -58,11 +63,11 @@ export class ProjectsListComponent implements OnInit {
 
   public rewardSelected!: boolean;
 
-  public showModal!:boolean;
+  public showModal!: boolean;
 
   public filteredProjects: IProject[] = [];
 
-  private _projectFilter = "";
+  private _projectFilter = '';
 
   public receivedRating!: string;
 
@@ -108,8 +113,7 @@ public toggleSelected():void{
   this.rewardSelected = !this.rewardSelected;
 }
 
-    public projects :IProject[] = this.projectService.projects;
-
+    public projects: IProject[] = this.projectService.projects;
 
   @Output()
   rating: number = 2;
