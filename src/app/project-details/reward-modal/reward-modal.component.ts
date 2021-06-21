@@ -13,10 +13,11 @@ import { ProjectListService } from '../../services/project-list.service';
 export class RewardModalComponent implements OnInit {
 
 
-  public project: IProject = <IProject>{};
-  public reward: IRewards = <IRewards>{};
+  public project: IProject = <IProject> {};
+  public reward: IRewards = <IRewards> {};
 
   constructor(private route: ActivatedRoute,
+    
   private proLiService: ProjectListService) { }
 
 
