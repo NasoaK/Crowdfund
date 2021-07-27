@@ -4,12 +4,10 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
-
 section {
   margin-left: auto;
   margin-right: auto;
@@ -22,13 +20,11 @@ section {
   right: 50%;
   transform: translate(-50%);
 }
-
 .project-header {
   object-fit: cover;
   width: 100%;
   height: 55vh;
 }
-
 #project-logo {
   width: 56px;
   height: 56px;
@@ -38,48 +34,40 @@ section {
   transform: translate(-50%);
   position: absolute;
 }
-
 .project-intro {
   text-align: center;
   margin-bottom: 40px;
 }
-
 .project-figure {
   font-size: xx-large;
   margin-bottom: 15px;
 }
-
 h1 {
   font-weight: 700;
   font-size: 28px;
   margin-bottom: 10px;
 }
-
 .card {
   background-color: white;
   margin-bottom: 25px;
   border-radius: 10px;
   padding: 50px;
 }
-
 .card ul {
   display: flex;
   text-align: left;
   padding: 0 0 0 0;
   margin-bottom: 50px;
 }
-
 .card ul li {
   font-weight: 700;
   font-size: 30px;
 }
-
 p {
   font-weight: normal;
   font-size: medium;
   color: #5f5f5f;
 }
-
 #count-separation {
   border-left: 1px solid lightgrey;
   border-right: 1px solid lightgrey;
@@ -87,28 +75,23 @@ p {
   margin-left: 50px;
   margin-right: 50px;
 }
-
 .progressBar {
   background-color: lightgrey;
   width: 100%;
   height: 15px;
   border-radius: 30px;
 }
-
 .progress {
-  
   height: 100%;
   background-color: #49a8a8;
   border-radius: 30px;
   max-width: 100%;
 }
-
 .about {
   text-align: left;
   margin-bottom: 50px;
   font-weight: 500;
 }
-
 .btn-global {
   padding: 0 40px 0 40px;
   height: 56px;
@@ -136,9 +119,7 @@ p {
   font-weight: 700;
   outline: none;
 }
-
 #bookmark-icon {
-
   float: left;
   height: 56px;
   width: 56px;
@@ -147,7 +128,6 @@ p {
   fill: green;
   align-items: center;
 }
-
 :hover#bookmark{
 cursor: pointer;
 }
@@ -157,7 +137,6 @@ cursor: pointer;
 .translate-bkm{
   margin-left: 145px;
 }
-
 #bookmark-text {
   margin: 12px 10px 10px 84px;
   font-weight: bold;
@@ -165,8 +144,6 @@ cursor: pointer;
   z-index: 1;
   transition: 0.2s;
 }
-
-
 .bookmarked-text{
   color: #49a8a8;
   margin: 12px 10px 10px 34px;
@@ -175,39 +152,32 @@ cursor: pointer;
   z-index: 1;
   transition: 0.2s;
 }
-
 .box-btn {
   display: flex;
   justify-content: space-between;
   margin: 0px 0px 0px 0px;
 }
-
 .stand {
   border: 1px solid lightgrey;
   border-radius: 10px;
   margin-bottom: 30px;
   padding: 30px;
 }
-
 .stand > p{
   margin-bottom : 20px
 }
-
 .pledge-box {
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
 }
-
 h3 {
   font-weight: 700;
 }
-
 .pledge {
   color: #49a8a8;
   font-weight: 500;
 }
-
 .left-number {
   float: left;
   font-weight: 700;
@@ -215,15 +185,11 @@ h3 {
   margin-right: 5px;
   color: black;
 }
-
 /* Modal */
-//TODO modal pos-abs ; integration
-
 #closeCross{
   position:absolute;
   right:50px;
   transition:0.2s
- 
 }
 #closeCross:hover{
   transform:scale(1.5) rotate(180deg);
@@ -231,8 +197,6 @@ h3 {
  #closeCross > path:hover{
   fill:darkcyan;
    cursor:pointer;
-   
-  
 }
 .modal {
   position: absolute;
@@ -263,16 +227,13 @@ h3 {
 }
 .opened-reward{
   border: 2px solid #49a8a8;
-
 }
 .closed-reward{
   border: 1px solid lightgrey;
-
 }
 .modal-rewards-top{
   padding :35px 40px 40px 70px ;
 }
-
 .modal-rewards {
   border-radius: 10px;
   margin-top: 30px;
@@ -358,12 +319,10 @@ outline: none;
 
 @media(max-width:800px){
  
-  
   .card ul li {
     font-weight: 700;
     font-size: 30px;
   }
-
 
 #count-separation {
   border-left: 1px solid lightgrey;
@@ -376,7 +335,6 @@ outline: none;
 }
 
 @media(max-width:750px){
-
 
 #closeCross{
   right:25px
@@ -395,7 +353,6 @@ p{
   font-size: 14px;
   color:rgb(138, 138, 138);
   font-weight:400
-
 }
 #bookmark{
   width: fit-content;
@@ -403,28 +360,22 @@ p{
 #bookmark-text{
   display: none;
 }
-
 .translate-bkm{
   margin-left:0px;
 }
 .project-header{
   height: 40vh;
   background-size: cover;
-
   }
-
 h1{
     font-weight: 700;
     font-size: 22px;
     margin-bottom: 20px;
   }
-
 .card ul {
     display: block;
     text-align: center;
   } 
-
-
 #count-separation {
   border-left: none;
   border-right:none;
@@ -458,7 +409,6 @@ h1{
   padding: 12px 35px;
   height: fit-content;
 }
-
 .stand-left{
   margin-bottom: 25px;
 }
