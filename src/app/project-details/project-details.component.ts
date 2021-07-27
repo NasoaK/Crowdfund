@@ -15,8 +15,8 @@ import { ProjectListService } from "../services/project-list.service";
   styleUrls: ["./project-details.component.scss"],
 })
 export class ProjectDetailsComponent implements OnInit {
-  public project: IProject = <IProject>{};
 
+  public project: IProject = <IProject>{};
 
 /*   public selectReward:boolean; */
   public bookmarked:boolean;
