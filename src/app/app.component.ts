@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {LayoutModule} from '@angular/cdk/layout';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 
