@@ -8,7 +8,7 @@ import { RewardModalComponent } from "./project-details/reward-modal/reward-moda
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "project", component: ProjectsListComponent },
-  { path: "project/:id", component: ProjectDetailsComponent, children: [{path:':nameR', component: RewardModalComponent}] },
+  { path: "project/:id", component: ProjectDetailsComponent },
   { path: "about", component: ProjectsListComponent },
 ];
 
