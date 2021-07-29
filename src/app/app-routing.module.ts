@@ -6,7 +6,7 @@ import { ProjectsListComponent } from "./projects-list/projects-list.component";
 import { RewardModalComponent } from "./project-details/reward-modal/reward-modal.component";
 
 const routes: Routes = [
-  { path: "home", component: HomeComponent },
+  { path: "", component: HomeComponent, pathMatch: 'prefix'},
   { path: "project", component: ProjectsListComponent },
   { path: "project/:id", component: ProjectDetailsComponent },
   { path: "about", component: ProjectsListComponent },
